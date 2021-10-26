@@ -1,0 +1,57 @@
+1.フォルダー名前変更
+	qiye
+2.　　.project中の<name>もqiyeへ変更
+3.prj開く
+
+4.db作成 CREATE DATABASE db_database28;
+5.A5M2でdbシナリオ実行
+		db_database28.sql
+6.Dao.java中dbPwd = "123456"　　　　dbPwd = "root"へ変更
+7．Prj実行（Java　applicationで）
+　　　VM引数　-splash:splash.jpg
+　　　
+　　　登録
+　　　　　username:　tsoft
+　　　　　password:　111
+
+=========================================================
+简单归纳
+	main
+		LoginDialog 表示		//登录面板
+			new MainFrame()
+			initialize()
+				setContentPane(getLoginPanel())　将登录面板置于登录窗体中
+									new LoginPanel()
+									loginPanel.add(getLoginButton(), null)Button監視処理（EVENT処理）
+														actionPerformed(ActionEvent e)
+															Dao.checkLogin(userStr, passStr)　DBのuserとpassword検査
+															mainFrame.setVisible(true)　mainFrame表示する
+
+		MainFrame()				//主面板
+			initialize()
+				getFrameMenuBar()			//menu設定
+					add(getJinhuo_Menu());
+					add(getXiaoshou_Menu());//（信息查询）菜单，追加菜单内的项目
+						xinxi_chaxunMenu.add(getXiaoshou_chaxunItem());
+						xinxi_chaxunMenu.add(getShangpin_chaxunItem());
+						xinxi_chaxunMenu.add(getXiaoshou_paihangItem());//排行item
+							//菜单项被选择后
+							createIFrame(xiaoshou_paihangItem, XiaoShouPaiHang.class);//排行IFrame打开
+								//下拉列表
+								// 表格模型
+								class OkAction implements ActionListener//点击“确定”按钮后，发生的事件
+									actionPerformed
+										SQL文生成
+										list = Dao.findForList(queryStr);//查询
+											findForResultSet（）;
+												stmt.executeQuery(sql)
+										updateTable(iterator);		//查询结果放到内存表格中
+					add(getKucun_Menu());	   //处理类似，略
+					add(getXinxi_chaxunMenu());//处理类似，略
+					add(getJiben_ziliaoMenu());//处理类似，略
+					add(getXitong_weihuMenu());//处理类似，略
+					add(getChuang_kouMenu());  //处理类似，略
+					add(getBang_zhuMenu());    //处理类似，略
+
+				getFrameContentPane()		ContentPane設定
+
