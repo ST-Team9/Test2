@@ -1,0 +1,52 @@
+mysql -u root -D test -p
+
+
+データ操作言語（Data Manipulation Language）
+SELECT（データの検索）
+INSERT（データの追加）
+UPDATE（データの更新）
+DELETE（データの削除）
+
+
+データ定義言語（Data Definition Language）
+CREATE（テーブルの作成）
+ALTER（テーブルの設定変更）
+DROP（テーブルの削除）
+TRUNCATE（テーブルデータの削除）
+
+
+
+
+データ制御言語（Data Control Language）
+GRANT（権限付与）
+REVOKE（権限剥奪）
+
+
+
+
+SQLの具体例「SELECT文」
+  SELECT  列名1,列名2,列名3（どの列を検索・表示させるか）
+  FROM　 表名（どの表から検索するか）
+  WHERE  抽出条件
+
+
+
+
+
+テーブルの作成 <CREATE TABLE>  CREATE TABLE テーブル名 (列名 データ型 , ......);
+データ型 
+char char(n) 定长字符串,存储空间大小固定使用char(2)来表示类型或状态
+varchar varchar(n) 边长祖父穿,存储空间等于实际数据空间 只包含英文字符的字符串
+int 4字节 表示整数,日入自增ID和表示数量
+bigint 8字节 表述长整数.比如自增ID(数量比较大的情况下) 数值型
+float(有效数字位数,小位数) float(有效数字位数,小数位)  数值型
+date 8字节 表示日期和时间
+BLOB   Binary Lary Object(二进制大对象)
+CLOB Character Large Object(字符大对象)
+
+
+
+
+
+CURD
+

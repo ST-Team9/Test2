@@ -1,0 +1,139 @@
+empno,ename,comm 随意任名表内项
+emp随意任名表名
+简单查询
+select 表内项 from 表名                                                 查询单信息
+select 表内项,1表内项2 from 表名                                        查询多项信息
+select * from 表名                                                      查询全部信息
+select 表内项*任意数或者数字型任意表  from 表名                         表内项计算
+select 表内项(可以多个) as 更改当前表内项名称 from 表名                 重命名表内项
+
+
+条件查询
+select 表内项多个 from 表名 where 想查询的数值表内项=任意数             限制条件查询
+select 表内项多个 from 表名 where 想查询的字符串表内项 =“任意字符串”; 限制条件字符
+select 表内项多个 from 表名 where 想查询的数值表内项 <> 任意数        <>不等于此数查询
+select 表内项多个 from 表名 where 想查询的数值表内项 !=  任意数       !=不等于此数查询
+select 表内项多个 from 表名 where 想查询的字符表内项 <>'任意字符';    <>不等于此字查询
+select 表内项多个 from 表名 where 想查询的字符表内项 !='任意字符';    !=不等于此字查询
+以上同理>=任意数  <=任意数  的查询
+以上同理>=任意数 and <=任意数  的查询   例如>=500 and  <=1000   500到1000之间
+以上同理between 任意数 and 任意数       例如betwenn 10 and 500  10到500之间(包含最值)
+以上同理between 英文字母前 and 英文字母后 betwenn 'a' and 'g'   字符a开头到g之间
+条件查询以上同理 is null;                                              is null查询空值
+条件查询以上同理 is not null;                                       is not null非空置 
+条件查询以上同理 条件一 and 条件2                                     and 并且
+条件查询以上同理 条件一 or 条件2                                      or 或
+select * from emp where sal>1800 and (deptno=20 or deptno=30); 例子,or and 同时使用
+
+条件查询以上同理 in(数字或者字符可以多项目)                         包含的意思,和or类似
+例如select ename,job from emp where job in ('SALESMAN',＇MANAGER')
+例如select ename,sal from emp where sal not in (1600,3000)           not in除此之外
+条件查询以上同理 not写法1   <>任意数字字符 and <>任意数字字符    除任意数字字符之外   
+                 not写法2    not (sal = 1600 or sal = 3000)
+                 not写法3    not in(1600,3000)
+                 not null   select * from emp where comm is not null   非空
+like可以实现模糊查诟，like支持%和下划线匹配
+select ename from emp where ename like 'M%' M开头
+select ename from emp where ename like '%M  M结尾
+select ename from emp where ename like '%M%'  包含M
+select ename from emp where ename like '_A%';  第二个为A的
+select ename from emp where ename like '_%A';  倒数第二个为A的
+select ename from emp where ename like '__%A';  _每次加1距离就加一反之
+
+
+数据排序asc,desc
+单一字段排序order by
+select 表内项,表内项 from 表名 order by 想排序表内项;
+select ename,job,sal from emp where job = 'MANAGER'order by sal 工作为MANGAER的薪水排
+如果包含 where 语句 order by 必须放到 where 后面，如果没有 where 语句 order by 放到表
+的后面；
+
+
+手动指定字段排序
+asc升序 desc降序
+select ename,job,ename from emp order by job asc,sal desc;多排
+select * from emp order by 6; 字段位置排序
+
+
+函数处理
+select upper(ename) as ename from emp;Lower转换小写 upper转化大写
+select substr(ename,2,1) from emp 查询特定位置数,字符 (2,1)2第几位 1几个
+select ename,length(ename) as nameLength from emp 获取长度
+在数据库中，有Null参不数学运算的结果一定为Null；为了防止计算结果出现Null，
+建议先使用ifnull函数预先处理。 select ename,ifnull(comm,0) from emp;
+查询员工薪水与补助的和 select sal + ifnull(comm,0) from emp;
+select sal+comm from emp是错误的,原因当有Null是数字计算一定是Null
+
+
+ case…when…then…else…end
+select enmae,job,sal,
+(case job
+when ‘MANAGER’then sal * 1.1
+when ‘SALESMAN’then sal * 1.5
+else sal
+end)
+from emp where job in('SALESMAN','MANAGER') order by sal 自己理解去吧..
+
+
+vue spring aws js java sql
+将日期转换为特定格式字符串date_format(日期类型数据,‘日期格式‟)
+
+
+select ename,date_format(hiredate,'%m-%d-%Y')hiredate from emp order by ename
+
+
+
+分组凼数/聚合凼数/多行处理凼数
+sum 求和
+avg qu平均
+max qu最大值
+min qu最小值
+count qu得记录
+
+什么是单行处理凼数，什么是多行处理凼数？
+单行凼数都是一行输入对应一行输出
+多行处理凼数都是多行输入对应一行输出
+用法：avg(字段名称)
+用法：sum(字段名称)
+用法：max(字段名称)
+用法：min(字段名称
+用法：count(字段名称) 或 count(*
+1、 count(*)表示dang得当前查询表所有记录
+2、 count(字段名称)，bu会统计为 null 的记录
+select count(*),sum(sal),avg(sal),max(sal),min(sal) from emp;
+ distinct 去除重复记录
+分组查诟：group by
+重点结论：有 group by 的DQL询句中，select 询句后面叧能跟 分组函数 + 参不分组的字段；
+
+ where 不 having 区别：
+1） where 和 having 都是为了完成数据的过滤，它们后面都是添加条件；
+2） where 是在 group by之前完成过滤；
+3） having 是在 group by 之后完成过滤；
+
+一个完成的SQL询句如下：
+select 
+xxxx
+from
+xxxx
+where 
+xxxx
+group by
+xxxx
+having
+xxxx
+order by
+xxx
+
+
+1） from 将硬盘上的表文件加载到内存
+ 2） where:将符合条件的数据行摘叏出来。生成一张新的临时表
+ 3） group by :根据列中的数据种类，将当前临时表划分成若干个新的临时表
+ 4） having : 可以过滤掉group by生成的丌符合条件的临时表
+ 5） select : 对当前临时表迚行整列读叏
+ 6） order by : 对select生成的临时表，迚行重新排序，生成新的临时表
+ 7) limit : 对最终生成的临时表的数据行，迚行截叏
+
+
+Insert into 表名(字段名1，字段名2，…) values(值1, 值1,…)
+
+
