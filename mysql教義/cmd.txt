@@ -1,5 +1,6 @@
 mysql -u root -D test -p
 
+123
 
 データ操作言語（Data Manipulation Language）
 SELECT（データの検索）
