@@ -1,6 +1,10 @@
 mysql -u root -D test -p
+<<<<<<< HEAD
 
 123
+=======
+qwe
+>>>>>>> lee
 
 データ操作言語（Data Manipulation Language）
 SELECT（データの検索）

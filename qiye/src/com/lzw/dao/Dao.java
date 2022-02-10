@@ -45,7 +45,7 @@ public class Dao {
 	protected static String dbClassName = "com.mysql.jdbc.Driver";// MySQL数据库驱动类的名称
 	protected static String dbUrl = "jdbc:mysql://127.0.0.1:3306/db_database28";// 访问MySQL数据库的路径
 	protected static String dbUser = "root";// 访问MySQL数据库的用户名
-	protected static String dbPwd = "root";// 访问MySQL数据库的密码
+	protected static String dbPwd = "8NwudGGg";// 访问MySQL数据库的密码
 	protected static String dbName = "db_database28";// 访问MySQL数据库中的实例(db_database28)
 	protected static String second = null;//
 	public static Connection conn = null;// MySQL数据库的连接对象
