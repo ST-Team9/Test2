@@ -1,5 +1,5 @@
 mysql -u root -D test -p
-
+qwe
 
 データ操作言語（Data Manipulation Language）
 SELECT（データの検索）

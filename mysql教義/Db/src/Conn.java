@@ -20,7 +20,7 @@ public class Conn {
 			e.printStackTrace();
 		}
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "8NwudGGg");
 			//for MySQL8.0.16
 //				con = DriverManager.getConnection("jdbc:mysql:"
 //					+ "//127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=GMT%2B8", "root", "root");
@@ -30,7 +30,7 @@ public class Conn {
 
 			try {
 				sql = con.createStatement(); //
-				res = sql.executeQuery("select * from wangbin123");//table名　zhao
+				res = sql.executeQuery("select * from emp");//table名　zhao
 				while (res.next()) { //databaseすべて出力
 					String id = res.getString(1);
 					String Lastname = res.getString(2);
@@ -38,7 +38,7 @@ public class Conn {
 					System.out.print("ID    " + id); //
 					System.out.print("    Lastname:    " + Lastname);
 					System.out.println("    Firstname:    " + Firstname);
-				 
+
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
